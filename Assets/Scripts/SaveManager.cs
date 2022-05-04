@@ -19,6 +19,12 @@ public class SaveManager : MonoBehaviour {
         UnlockColour(4);
         Debug.Log(IsColourOwned(4));
 
+        //is the accelerator being used, does machine support it
+        if(state.usingAccelerometer && !SystemInfo.supportsAccelerometer)
+        {
+         state.usingAccelerometer = false;
+         Save();
+       }
     }
 
     //save the state script to player preference

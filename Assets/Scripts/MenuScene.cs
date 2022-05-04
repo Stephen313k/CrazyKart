@@ -16,6 +16,10 @@ public class MenuScene : MonoBehaviour {
     public Transform colourPanel;
     public Transform trailPanel;
 
+    public Button tiltControlButton;
+    public Color tiltControlEnabled;
+    public Color tiltControlDisabled;
+
     public Text colourBuySetText;
     public Text trailBuySetText;
     public Text goldText;
@@ -32,6 +36,7 @@ public class MenuScene : MonoBehaviour {
     private int activeTrailIndex;
 
     private Vector3 desiredMenuPosition;
+    private GameObject currentTrail;
 
     //variables menu animation
     public AnimationCurve enteringLevelZoomCurve;
@@ -39,9 +44,27 @@ public class MenuScene : MonoBehaviour {
     private float zoomDuration = 3.0f;
     private float zoomTransition;
 
+    //for trails
+    private Texture previousTrail;
+    private GameObject lastPreviewObject;
+
+    public Transform trailPreviewObject;
+    public RenderTexture trailPreviewTexture;
+
     private void Start()
     {
         SaveManager.Instance.state.gold = 100; ////////////////
+
+        //check if theres an accelerometer
+        if(SystemInfo.supportsAccelerometer)
+        {
+            // is it enabled
+            tiltControlButton.GetComponent<Image>().color = (SaveManager.Instance.state.usingAccelerometer) ? tiltControlEnabled : tiltControlDisabled;
+        }
+        else
+        {
+         //   tiltControlButton.gameObject.SetActive(false);
+        }
 
         //find menu camera and assign it
         menuCam = FindObjectOfType<MenuCamera>();
@@ -72,6 +95,10 @@ public class MenuScene : MonoBehaviour {
         trailPanel.GetChild(SaveManager.Instance.state.activeTrail).GetComponent<RectTransform>().localScale = Vector3.one * 1.15f;
         colourPanel.GetChild(SaveManager.Instance.state.activeColour).GetComponent<RectTransform>().localScale = Vector3.one * 1.15f;
 
+        //trail preview in menu
+        lastPreviewObject = GameObject.Instantiate(Manager.Instance.playerTrails[SaveManager.Instance.state.activeTrail]) as GameObject;
+        lastPreviewObject.transform.SetParent(trailPreviewObject);
+        lastPreviewObject.transform.localPosition = Vector3.zero;
     }
 
     private void Update()
@@ -121,7 +148,7 @@ public class MenuScene : MonoBehaviour {
             Button b = t.GetComponent<Button>();
             //use index
             b.onClick.AddListener(() => OnLevelSelect(currentIndex));
-            Image img = t.GetComponent<Image>();
+            RawImage img = t.GetComponent<RawImage>();
             //make sure level is unlocked
             if (i <= SaveManager.Instance.state.completedLevel)
             {
@@ -165,7 +192,9 @@ public class MenuScene : MonoBehaviour {
             b.onClick.AddListener(() => OnColourSelect(currentIndex));
             //if colour is owned its clear
             Image img = t.GetComponent<Image>();
-            img.color = SaveManager.Instance.IsColourOwned(i) ? Color.white : new Color(0.5f, 0.5f, 0.5f);
+            img.color = SaveManager.Instance.IsColourOwned(i) ? Manager.Instance.playerColours[currentIndex]
+                                                                //making it darker
+                                                              : Color.Lerp(Manager.Instance.playerColours[currentIndex], new Color(0,0,1), 0.25f);
             i++;
         }
         //reset index and do the same for trail button
@@ -180,11 +209,13 @@ public class MenuScene : MonoBehaviour {
             b.onClick.AddListener(() => OnTrailSelect(currentIndex));
 
             //if trail is owned its clear in the shop pannel
-            Image img = t.GetComponent<Image>();
+            RawImage img = t.GetComponent<RawImage>();
             img.color = SaveManager.Instance.IsTrailOwned(i) ? Color.white : new Color(0.5f, 0.5f, 0.5f);
 
             i++;
         }
+
+      //  previousTrail = trailPanel.GetChild(SaveManager.Instance.state.activeTrail).GetComponent<RawImage>().texture;
     }
 
     //setting what menu player is directed to
@@ -224,8 +255,9 @@ public class MenuScene : MonoBehaviour {
         //set active colour to index
         activeColorIndex = index;
         SaveManager.Instance.state.activeColour = index;
-        //change color on player model
 
+        //change color on player model
+        Manager.Instance.playerMaterial.color = Manager.Instance.playerColours[index];
         //change buy/set button text
         colourBuySetText.text = "Current";
 
@@ -241,6 +273,20 @@ public class MenuScene : MonoBehaviour {
         SaveManager.Instance.state.activeTrail = index;
 
         //change color on player model
+        if (currentTrail != null)
+            Destroy(currentTrail);
+
+        //create the new trail, cast as gameobject
+        currentTrail = Instantiate(Manager.Instance.playerTrails[index]) as GameObject;
+
+        //set it as child of player
+        currentTrail.transform.SetParent(FindObjectOfType<MenuPlayer>().transform);
+
+        //scaling and rotation
+        currentTrail.transform.localPosition = Vector3.zero;
+        currentTrail.transform.localRotation = Quaternion.Euler(0, 0, 90);
+        currentTrail.transform.localScale = Vector3.one * 0.01f;
+
 
         //change buy/set button text
         trailBuySetText.text = "Current";
@@ -305,10 +351,27 @@ public class MenuScene : MonoBehaviour {
     {//if is button clicked it's selected, exit
         if (selectedTrailIndex == currentIndex)
             return;
+
+        //preview trail, getting image of button
+        trailPanel.GetChild(selectedTrailIndex).GetComponent<RawImage>().texture = previousTrail;
+
         //make the scale bigger
         trailPanel.GetChild(currentIndex).GetComponent<RectTransform>().localScale = Vector3.one * 1.15f;
         //put previous one on normal scale
         trailPanel.GetChild(selectedTrailIndex).GetComponent<RectTransform>().localScale = Vector3.one;
+        //keep new trail preview image in previous trail
+        previousTrail = trailPanel.GetChild(currentIndex).GetComponent<RawImage>().texture;
+        // set the new trail image to 2nd camera
+        trailPanel.GetChild(currentIndex).GetComponent<RawImage>().texture = trailPreviewTexture;
+        //change object of the trail preview
+        if (lastPreviewObject != null)
+            Destroy(lastPreviewObject);
+
+        //trail preview in menu
+        lastPreviewObject = GameObject.Instantiate(Manager.Instance.playerTrails[currentIndex]) as GameObject;
+        lastPreviewObject.transform.SetParent(trailPreviewObject);
+        lastPreviewObject.transform.localPosition = Vector3.zero;
+
 
         selectedTrailIndex = currentIndex;
 
@@ -372,7 +435,7 @@ public class MenuScene : MonoBehaviour {
 
 
                 //change colour of button in the pannel when bought
-                colourPanel.GetChild(selectedColourIndex).GetComponent<Image>().color = Color.white;
+                colourPanel.GetChild(selectedColourIndex).GetComponent<Image>().color = Manager.Instance.playerColours[selectedColourIndex];
 
                 //update gold amount
                 UpdateGoldText();
@@ -403,7 +466,7 @@ public class MenuScene : MonoBehaviour {
                 SetTrail(selectedTrailIndex);
 
                 //change colour of button in the pannel when bought
-                trailPanel.GetChild(selectedTrailIndex).GetComponent<Image>().color = Color.white;
+                trailPanel.GetChild(selectedTrailIndex).GetComponent<RawImage>().color = Color.white;
 
                 //update gold amount
                 UpdateGoldText();
@@ -414,6 +477,19 @@ public class MenuScene : MonoBehaviour {
                 //not enough gold
             }
         }
+    }
+
+    public void OnTiltControl()
+    {
+        //toggle to boolean
+        SaveManager.Instance.state.usingAccelerometer = !SaveManager.Instance.state.usingAccelerometer;
+
+        //save players preference
+        SaveManager.Instance.Save();
+
+        //change display image of tilt button
+        tiltControlButton.GetComponent<Image>().color = (SaveManager.Instance.state.usingAccelerometer) ? tiltControlEnabled : tiltControlDisabled;
+
     }
 
 }
