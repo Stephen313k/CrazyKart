@@ -92,10 +92,13 @@
     <Compile Include="Assets\Myo\Scripts\Myo.NET\libmyo.cs" />
     <Compile Include="Assets\Myo\Scripts\ThalmicHub.cs" />
     <Compile Include="Assets\Myo\Scripts\ThalmicMyo.cs" />
+    <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\CarController.cs" />
     <Compile Include="Assets\Scripts\CarSpawner.cs" />
     <Compile Include="Assets\Scripts\EnemyCar.cs" />
+    <Compile Include="Assets\Scripts\EnemyDestoyer.cs" />
     <Compile Include="Assets\Scripts\TrackMove.cs" />
+    <Compile Include="Assets\Scripts\UIManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Myo\README-MyoUnity.txt" />

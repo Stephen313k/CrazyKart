@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CarSpawner : MonoBehaviour {
 
-    public GameObject car;
+    public GameObject[] cars;
+    int carNo;
+
     public float maxPos = 2.2f;
     //enemy respawn time
     public float delayTimer = 1f;
@@ -24,8 +26,10 @@ public class CarSpawner : MonoBehaviour {
         {
 		    //keep spawns inside road
             Vector3 carPos = new Vector3(Random.Range(-maxPos, maxPos),transform.position.y, transform.position.z);
+            //random car types
+            carNo = Random.Range(0, 3);
             //where enemy spawns
-            Instantiate(car, carPos, transform.rotation);
+            Instantiate(cars[carNo], carPos, transform.rotation);
             //timer resets
             timer = delayTimer;
         }

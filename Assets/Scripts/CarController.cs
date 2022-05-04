@@ -16,33 +16,39 @@ public class CarController : MonoBehaviour {
 
     Vector3 position;
 
+    public UIManager ui;
+    public AudioManager am;
+    //for myo armband
     public GameObject myo = null;
 
+    //myo armband
     void Move()
     {
-
+        //horizontal axis for car
         float moveHorizontal = Input.GetAxis("Horizontal");
 
+        //second peremeter is 0 for vector2, only changing horizontal
         GetComponent<Rigidbody2D>().velocity = new Vector2(moveHorizontal, 0) * speed;
         ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo>();
-       
-            if (thalmicMyo.pose == Pose.WaveOut)
-            {
-                transform.position += Vector3.right * speed * Time.deltaTime;
 
-            }
+        if (thalmicMyo.pose == Pose.WaveOut)
+        {
+            transform.position += Vector3.right * speed * Time.deltaTime;
+        }
 
-            else if (thalmicMyo.pose == Pose.WaveIn)
-            {
-               //position.x += Input.GetAxis("Horizontal") * carSpeed * Time.deltaTime;
+        else if (thalmicMyo.pose == Pose.WaveIn)
+        {
+            transform.position += Vector3.left * speed * Time.deltaTime;
 
-                transform.position += Vector3.left * speed * Time.deltaTime;
-
-             //   ExtendUnlockAndNotifyUserAction(thalmicMyo);
-            }
-        
+        }
     }
 
+    private void Awake()
+    {
+        //play car sound
+        am.carSound.Play();
+
+    }
     // Use this for initialization
     void Start () {
         position = transform.position;
@@ -55,8 +61,6 @@ public class CarController : MonoBehaviour {
         //limit car from going off road
          position.x = Mathf.Clamp(position.x, -maxPos, maxPos);
 
-        //move
-       //  transform.position = position;
     }
 
     //collisions hitting enemy car
@@ -64,7 +68,10 @@ public class CarController : MonoBehaviour {
     {
         if(col.gameObject.tag == "Enemy")
         {
+            //delete the car, display menu and stop car sound
             Destroy(gameObject);
+            ui.GameOver();
+            am.carSound.Stop();
         }
     }
 }

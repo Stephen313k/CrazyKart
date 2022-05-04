@@ -65,17 +65,17 @@ public class ThalmicHub : MonoBehaviour
     void Awake ()
     {
         // Ensure that there is only one ThalmicHub.
-        if (_instance != null) {
-#if UNITY_EDITOR
-            EditorUtility.DisplayDialog("Can only have one ThalmicHub",
-                                        "Your scene contains more than one ThalmicHub. Remove all but one ThalmicHub.",
-                                        "OK");
-#endif
-            Destroy (this.gameObject);
-            return;
-        } else {
-            _instance = this;
-        }
+     //   if (_instance != null) {
+//#if UNITY_EDITOR
+       //     EditorUtility.DisplayDialog("Can only have one ThalmicHub",
+               //                         "Your scene contains more than one ThalmicHub. Remove all but one ThalmicHub.",
+                //                        "OK");
+//#endif
+           // Destroy (this.gameObject);
+       //     return;
+     //   } else {
+      //      _instance = this;
+      //  }
 
         // Do not destroy this game object. This will ensure that it remains active even when
         // switching scenes.
