@@ -3,17 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using LockingPolicy = Thalmic.Myo.LockingPolicy;
+using Pose = Thalmic.Myo.Pose;
+using UnlockType = Thalmic.Myo.UnlockType;
+using VibrationType = Thalmic.Myo.VibrationType;
+
+
 public class UIManager : MonoBehaviour {
 
     //menu buttons
     public GameObject buttons;
-
+    public bool GameIsPaused = false;
     public Text scoreText;
+
     int score;
     bool gameOver;
 
-	// Use this for initialization
-	void Start () {
+    public GameObject pauseMenuUI;
+
+    //for myo armband
+    public GameObject myo = null;
+
+    // Use this for initialization
+    void Start () {
 
         buttons.SetActive(false);
         gameOver = false;
@@ -25,7 +37,21 @@ public class UIManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         scoreText.text = "Score: " + score;
-	}
+
+        ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo>();
+
+        if (thalmicMyo.pose == Pose.DoubleTap)
+        {
+            if (GameIsPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
+    }
 
     void ScoreUpdate()
     {
@@ -48,20 +74,23 @@ public class UIManager : MonoBehaviour {
     public void Play()
     {
         Application.LoadLevel("Level1");
-
     }
 
-    //for pausing the game
-    public void Pause()
+
+    //Method which unpauses the game
+    public void Resume()
     {
-        if(Time.timeScale == 1)
-        {
-            Time.timeScale = 0;
-        }
-        else if (Time.timeScale == 0)
-        {
-            Time.timeScale = 1;
-        }
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+    }
+
+    //Method which pauses the game
+    void Pause()
+    {
+        pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        GameIsPaused = true;
     }
 
     public void Replay()

@@ -109,7 +109,7 @@ public class CarController : MonoBehaviour {
 
     //ANDROID ONLY BELOW
 
-
+/*
     public void TouchMove()
     {
         if(Input.touchCount > 0)
@@ -134,7 +134,7 @@ public class CarController : MonoBehaviour {
                 SetVelocityZero();
             }
     }
-
+*/
     //android move left button
     public void MoveLeft()
     {

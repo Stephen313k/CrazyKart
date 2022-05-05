@@ -1,0 +1,68 @@
+Initialize engine version: 5.6.7f1 (e80cc3114ac1)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1060 3GB (ID=0x1c02)
+    Vendor:   NVIDIA
+    VRAM:     2988 MB
+    Driver:   30.0.15.1179
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Stephen\OneDrive\Desktop\Kart\bui_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Stephen\OneDrive\Desktop\Kart\bui_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Stephen\OneDrive\Desktop\Kart\bui_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Stephen\OneDrive\Desktop\Kart\bui_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Stephen\OneDrive\Desktop\Kart\bui_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Stephen\OneDrive\Desktop\Kart\bui_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Stephen\OneDrive\Desktop\Kart\bui_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Stephen\OneDrive\Desktop\Kart\bui_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.241 seconds
+Platform assembly: C:\Users\Stephen\OneDrive\Desktop\Kart\bui_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Stephen\OneDrive\Desktop\Kart\bui_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 3286x1080 at -1366,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+The referenced script on this Behaviour (Game Object 'Voice') is missing!
+ 
+(Filename:  Line: 1744)
+
+UnloadTime: 1.045600 ms
+Windows
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+The referenced script on this Behaviour (Game Object 'Voice') is missing!
+ 
+(Filename:  Line: 1744)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 3.438900 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 411.
+Total: 0.307400 ms (FindLiveObjects: 0.020700 ms CreateObjectMapping: 0.015300 ms MarkObjects: 0.260300 ms  DeleteObjects: 0.010300 ms)
+
+Windows
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+The referenced script on this Behaviour (Game Object 'Voice') is missing!
+ 
+(Filename:  Line: 1744)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.381000 ms
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 423.
+Total: 0.298900 ms (FindLiveObjects: 0.026200 ms CreateObjectMapping: 0.014800 ms MarkObjects: 0.246100 ms  DeleteObjects: 0.010400 ms)
+
+Windows
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Setting up 6 worker threads for Enlighten.
+  Thread -> id: 69fc -> priority: 1 
+  Thread -> id: 29f4 -> priority: 1 
+  Thread -> id: 73b8 -> priority: 1 
+  Thread -> id: 7574 -> priority: 1 
+  Thread -> id: 7150 -> priority: 1 
+  Thread -> id: 1d9c -> priority: 1 
