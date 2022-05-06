@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{3D5757CA-4618-9FC2-82A2-C5903D5061DC}</ProjectGuid>
+    <ProjectGuid>{6CA72542-AD66-28B5-81F5-135AAB81ECB6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -72,8 +72,8 @@
     <Compile Include="Assets\Scripts\EnemyDestoyer.cs" />
     <Compile Include="Assets\Scripts\HealthScript.cs" />
     <Compile Include="Assets\Scripts\PlayerShoot.cs" />
-    <Compile Include="Assets\Scripts\PlayerTouch.cs" />
     <Compile Include="Assets\Scripts\SpeechRecognition.cs" />
+    <Compile Include="Assets\Scripts\SwipeControl.cs" />
     <Compile Include="Assets\Scripts\TrackMove.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
   </ItemGroup>

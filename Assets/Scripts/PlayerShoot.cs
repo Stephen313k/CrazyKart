@@ -60,7 +60,6 @@ public class PlayerShoot : MonoBehaviour {
                 StartCoroutine(Shoot());
                 UpdateAmmo(-1);//minus one ammo after shoot                
 
-
             }
         }
     }

@@ -10,8 +10,8 @@ ScriptsOnlyBuild:
     - EnemyDestoyer
     - HealthScript
     - PlayerShoot
-    - PlayerTouch
     - SpeechRecognition
+    - SwipeControl
     - ThalmicHub
     - ThalmicMyo
     - TrackMove
@@ -76,49 +76,51 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11344}
+      Script: {instanceID: 11318}
     - Class: 114
-      Script: {instanceID: 11564}
+      Script: {instanceID: 11350}
     - Class: 114
-      Script: {instanceID: 11610}
+      Script: {instanceID: 11612}
     - Class: 114
-      Script: {instanceID: 12022}
+      Script: {instanceID: 12024}
     - Class: 114
-      Script: {instanceID: 12086}
+      Script: {instanceID: 12088}
     - Class: 114
-      Script: {instanceID: 12118}
+      Script: {instanceID: 12120}
     - Class: 114
-      Script: {instanceID: 12484}
+      Script: {instanceID: 12124}
     - Class: 114
-      Script: {instanceID: 12690}
+      Script: {instanceID: 12488}
     - Class: 114
-      Script: {instanceID: 12768}
+      Script: {instanceID: 12694}
     - Class: 114
-      Script: {instanceID: 12788}
+      Script: {instanceID: 12772}
     - Class: 114
-      Script: {instanceID: 12800}
+      Script: {instanceID: 12792}
     - Class: 114
-      Script: {instanceID: 12820}
+      Script: {instanceID: 12804}
     - Class: 114
-      Script: {instanceID: 12946}
+      Script: {instanceID: 12824}
     - Class: 114
-      Script: {instanceID: 13056}
+      Script: {instanceID: 12950}
     - Class: 114
-      Script: {instanceID: 13338}
+      Script: {instanceID: 13060}
     - Class: 114
-      Script: {instanceID: 13368}
+      Script: {instanceID: 13342}
     - Class: 114
-      Script: {instanceID: 13438}
+      Script: {instanceID: 13372}
     - Class: 114
-      Script: {instanceID: 13450}
+      Script: {instanceID: 13442}
     - Class: 114
-      Script: {instanceID: 13574}
+      Script: {instanceID: 13454}
     - Class: 114
-      Script: {instanceID: 13808}
+      Script: {instanceID: 13578}
     - Class: 114
-      Script: {instanceID: 13856}
+      Script: {instanceID: 13812}
     - Class: 114
-      Script: {instanceID: 30686}
+      Script: {instanceID: 13832}
+    - Class: 114
+      Script: {instanceID: 13862}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -165,36 +167,30 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11344}
+      Script: {instanceID: 11350}
     - Class: 114
-      Script: {instanceID: 11564}
+      Script: {instanceID: 12120}
     - Class: 114
-      Script: {instanceID: 11610}
+      Script: {instanceID: 12124}
     - Class: 114
-      Script: {instanceID: 12118}
+      Script: {instanceID: 12772}
     - Class: 114
-      Script: {instanceID: 12690}
+      Script: {instanceID: 12792}
     - Class: 114
-      Script: {instanceID: 12768}
+      Script: {instanceID: 12950}
     - Class: 114
-      Script: {instanceID: 12788}
+      Script: {instanceID: 13060}
     - Class: 114
-      Script: {instanceID: 12946}
+      Script: {instanceID: 13372}
     - Class: 114
-      Script: {instanceID: 13056}
+      Script: {instanceID: 13832}
     - Class: 114
-      Script: {instanceID: 13368}
+      Script: {instanceID: 13862}
     - Class: 114
-      Script: {instanceID: 13856}
-    - Class: 114
-      Script: {instanceID: 30686}
-    - Class: 114
-      Script: {instanceID: 45778}
+      Script: {instanceID: 14254}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
-      Script: {instanceID: 0}
-    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -204,13 +200,17 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: aeb62f729c52c814dec86c47dcac1471
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Text
   - hash:
       serializedVersion: 2
       Hash: 4bc4346a71a8df53a6b106f68ef3a190
@@ -259,12 +259,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ActivationTrack
-  - hash:
-      serializedVersion: 2
-      Hash: aeb62f729c52c814dec86c47dcac1471
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Text
   - hash:
       serializedVersion: 2
       Hash: 499fd23433e68e265d153aa6b95d0047
@@ -391,6 +385,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: EventSystem
+  - hash:
+      serializedVersion: 2
+      Hash: 8e099053a1d32306032da6e798a6bd81
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpeechRecognition
   - hash:
       serializedVersion: 2
       Hash: 0fb27be807aa299702f28ad0bcad1f46
@@ -663,6 +663,12 @@ ScriptsOnlyBuild:
     className: TestRunCallbackListener
   - hash:
       serializedVersion: 2
+      Hash: 4f7ffb276b781f291ffc048a143307d9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SwipeControl
+  - hash:
+      serializedVersion: 2
       Hash: 4e5a63ce0840833637ef5ccbddd1d963
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner
@@ -709,18 +715,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: eb2a815f797b209bbdba428a8df4603d
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: PlayerTouch
-  - hash:
-      serializedVersion: 2
-      Hash: 068d7015c2ca02ea4d4d4c9f4d280d6b
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SpeechRecognition
   platform: 13
   scenePathNames:
   - Assets/Scenes/Menu.unity
