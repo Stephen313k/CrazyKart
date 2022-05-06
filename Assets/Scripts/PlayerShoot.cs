@@ -55,10 +55,12 @@ public class PlayerShoot : MonoBehaviour {
         {
             ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo>();
 
-            if (Input.GetButton("Fire1") && !isShooting && currentAmmo > 0 || thalmicMyo.pose == Pose.Fist && !isShooting && currentAmmo > 0)
+            if (Input.GetButton("Fire1") && !isShooting && currentAmmo > 0 || thalmicMyo.pose == Pose.Fist && !isShooting && currentAmmo > 0 || thalmicMyo.pose == Pose.FingersSpread && !isShooting && currentAmmo > 0)
             {
                 StartCoroutine(Shoot());
-                UpdateAmmo(-1);//minus one ammo after shoot
+                UpdateAmmo(-1);//minus one ammo after shoot                
+
+
             }
         }
     }
@@ -90,7 +92,7 @@ public class PlayerShoot : MonoBehaviour {
     //android
     public void TouchShoot()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && !isShooting && currentAmmo > 0)
         {
             //first touch is stored
             Touch touch = Input.GetTouch(0);
@@ -101,5 +103,17 @@ public class PlayerShoot : MonoBehaviour {
                 UpdateAmmo(-1);//minus one ammo after shoot
             }
         }
+    }
+
+    void ExtendUnlockAndNotifyUserAction(ThalmicMyo myo)
+    {
+        ThalmicHub hub = ThalmicHub.instance;
+
+        if (hub.lockingPolicy == LockingPolicy.Standard)
+        {
+            myo.Unlock(UnlockType.Timed);
+        }
+
+        myo.NotifyUserAction();
     }
 }

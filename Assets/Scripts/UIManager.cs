@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using UnityEngine.SceneManagement;
+
 using LockingPolicy = Thalmic.Myo.LockingPolicy;
 using Pose = Thalmic.Myo.Pose;
 using UnlockType = Thalmic.Myo.UnlockType;
@@ -38,19 +40,28 @@ public class UIManager : MonoBehaviour {
 	void Update () {
         scoreText.text = "Score: " + score;
 
-        ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo>();
+        //PLAY PAUSE AND EXIT APPLICATION REPLACED WITH VOICE RECOG AS MYO ARMBAND IS SENSITIVE AND DONT WANT TO ACCIDENTALLY START OR QUIT APPLICATION MID-GAME
 
-        if (thalmicMyo.pose == Pose.DoubleTap)
+      /*  ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo>();
+        //double tap pauses or resumes the game, same as esc key
+        if (thalmicMyo.pose == Pose.DoubleTap || Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPaused)
             {
                 Resume();
+                ExtendUnlockAndNotifyUserAction(thalmicMyo);
             }
             else
             {
                 Pause();
+                ExtendUnlockAndNotifyUserAction(thalmicMyo);
             }
         }
+        
+        if(thalmicMyo.pose == Pose.FingersSpread)
+        {
+            Play();
+        }*/
     }
 
     void ScoreUpdate()
@@ -86,7 +97,7 @@ public class UIManager : MonoBehaviour {
     }
 
     //Method which pauses the game
-    void Pause()
+    public void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
@@ -96,7 +107,7 @@ public class UIManager : MonoBehaviour {
     public void Replay()
     {
         //load current level again
-        Application.LoadLevel(Application.loadedLevel);
+        SceneManager.LoadScene(1);
     }
 
     public void Menu()
@@ -109,5 +120,17 @@ public class UIManager : MonoBehaviour {
     {
         //quit application
         Application.Quit();
+    }
+
+    void ExtendUnlockAndNotifyUserAction(ThalmicMyo myo)
+    {
+        ThalmicHub hub = ThalmicHub.instance;
+
+        if (hub.lockingPolicy == LockingPolicy.Standard)
+        {
+            myo.Unlock(UnlockType.Timed);
+        }
+
+        myo.NotifyUserAction();
     }
 }

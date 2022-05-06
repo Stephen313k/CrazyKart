@@ -11,7 +11,7 @@ using VibrationType = Thalmic.Myo.VibrationType;
 public class CarController : MonoBehaviour {
     public static float speed = 3;
 
-    public float carSpeed;
+    public float carSpeed = 20; ///
     public float maxPos = 2.5f;
 
     Vector3 position;
