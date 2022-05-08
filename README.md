@@ -38,17 +38,17 @@ TThe gestures control all forms of navigation, UI and game mechanics. The user e
 <img src="https://github.com/Stephen313k/KrazyKart/blob/main/Documentation/img/Gestures.png" height = "400">
 </p>
 
-WINDOWS:
-When using the Myo-armband-
-To move the player Left: Wave in
-To move the player Right: Wave out
-To shoot: Make a fist
+WINDOWS:<br />
+When using the Myo-armband- <br />
+To move the player Left: Wave in <br />
+To move the player Right: Wave out <br />
+To shoot: Make a fist <br />
 
-Voice commands for UI -
-"Start" - Starts the game/respawns
-"Exit" - Exits the application
-"Pause" - Pauses in-game
-"Resume" - Resumes the game
+Voice commands for UI - <br />
+"Start" - Starts the game/respawns <br />
+"Exit" - Exits the application <br />
+"Pause" - Pauses in-game <br />
+"Resume" - Resumes the game <br />
 
 <p align="center">
 <img src="https://github.com/Stephen313k/KrazyKart/blob/main/Documentation/img/myo.PNG" height = "400">
