@@ -66,6 +66,12 @@ public class SpeechRecognition : MonoBehaviour
             Resume();
         });
 
+                keywords.Add("continue", () =>
+        {
+            /* Fire off the method */
+            Resume();
+        });
+
         /* New KeywordRecognizer object and passing all the keys (words) */
         keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
         /* When a phrase was recognized, pop off a new keywordRecognizer */
